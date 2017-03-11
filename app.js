@@ -3,16 +3,13 @@ var app = angular.module("wordList", ['ngRoute', 'ngAnimate']);
 app.config(function($routeProvider) {
   $routeProvider
     .when('/uebersicht', {
-      templateUrl: 'uebersicht.html',
-      controller: 'myCtrl'
+      templateUrl: 'uebersicht.html'
     })
-    .when('/uebersicht/:param', {
-      templateUrl: 'details.html',
-      controller: 'myCtrl'
+    .when('/uebersicht/:id', {
+      templateUrl: 'details.html'
     })
     .when('/zufallswort', {
-      templateUrl: 'zufallswort.html',
-      controller: 'myCtrl'
+      templateUrl: 'zufallswort.html'
     })
     .otherwise({
       redirectTo: '/uebersicht'
@@ -23,9 +20,8 @@ app.config(function($routeProvider) {
 
 app.controller("myCtrl", function($scope, $location, $routeParams, $filter) {
 
-  $scope.word = "";
+  $scope.word = {};
   $scope.sortType = "-voting";
-
   $scope.curPage = 0;
   $scope.pageSize = 10;
   $scope.showMsg = 0;
@@ -37,10 +33,11 @@ app.controller("myCtrl", function($scope, $location, $routeParams, $filter) {
 
   $scope.id = (localStorage.getItem('id')!==null) ? localStorage.getItem('id') : 0;
 
-  var selWord = $routeParams.param;
-  $scope.selWord = parseInt(selWord, 10);
-  $scope.selWord = $scope.words.indexOf($filter('filter')($scope.words, {id: $scope.selWord}, true)[0]);
-
+  $scope.$on('$routeChangeSuccess', function() {
+    var selWord = $routeParams.id;
+    $scope.selWord = parseInt(selWord, 10);
+    $scope.selWord = $scope.words.indexOf($filter('filter')($scope.words, {id: $scope.selWord}, true)[0]);
+  }); 
 
   $scope.numberOfPages = function() {
     return Math.ceil($scope.words.length / $scope.pageSize);
@@ -67,14 +64,14 @@ app.controller("myCtrl", function($scope, $location, $routeParams, $filter) {
   };
 
   $scope.addWord  = function (){
-    if(!$scope.word){
+    if(!$scope.word.wordname){
       return;
     }
     else {
 
       var timestamp = new Date();
-      $scope.words.push({id:$scope.id++, wordname:$scope.word, voting:0, date:timestamp});
-      $scope.word = "";
+      $scope.words.push({id:$scope.id++, wordname:$scope.word.wordname, voting:0, date:timestamp});
+      $scope.word.wordname = "";
     }
     $scope.saveOrdered();
   };

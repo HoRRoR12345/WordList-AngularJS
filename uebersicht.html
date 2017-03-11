@@ -2,16 +2,15 @@
   <div class="row">
     <div class="form-inline col-xs-12 col-sm-5 col-md-5">
       <ul class="nav nav-pills nav-pills-word">
-        <!-- <li><a ng-click="sortBy('voting', true)">Beste</a></li> -->
         <li ng-class="{active: isSorted('-voting')}"><a ng-click="sortBy('-voting')">Beste</a></li>
         <li ng-class="{active: isSorted('-date')}"><a ng-click="sortBy('-date')">Neueste</a></li>
-        <li ng-class="{active: isSorted('word')}"><a ng-click="sortBy('word')">Alle</a></li>
+        <li ng-class="{active: isSorted('wordname')}"><a ng-click="sortBy('wordname')">Alle</a></li>
       </ul>
     </div>
     <div class="col-xs-12 col-sm-7 col-md-7 form-input-word">
       <div class="text-right-word">
         <form ng-submit="addWord()">
-          <input ng-model="word" type="text" class="form-control form-control-word" placeholder="Neue geistige Errungenschaft">
+          <input ng-model="word.wordname" type="text" class="form-control form-control-word" placeholder="Neue geistige Errungenschaft">
           <input type="submit" class="btn btn-success" value="Eintragen">
         </form>
       </div>
@@ -28,7 +27,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="word in words | filter:word:strict | orderBy: [sortType, $index] | pagination: curPage * pageSize | limitTo: pageSize track by $index">
+        <tr class="animate" ng-repeat="word in words | filter:word:strict | orderBy: [sortType, $index] | pagination: curPage * pageSize | limitTo: pageSize track by $index">
           <td>{{ words.indexOf(word) + 1 }}</td>
           <td><a href="#/uebersicht/{{word.id}}" ng-bind="word.wordname"></a></td>
           <td ng-bind="word.voting"></td>
