@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale = 1.0">
+
+    <title>Liste ekliger Wörter</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+
+    <script src="app.js"></script>
+  </head>
+
+  <body ng-app="wordList" ng-controller="myCtrl">
+
+    <div class="navbar navbar-default navbar-word">
+      <div class="container-fluid">
+        <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
+          <div class="navbar-header">
+            <a class="navbar-brand navbar-brand-word" ng-href="#/uebersicht">Liste ekliger Wörter</a>
+            <button type = "button" class = "navbar-toggle navbar-toggle-word" data-toggle = "collapse" data-target = ".navbar-collapse">
+              <span class = "sr-only">Toggle navigation</span>
+              <span class = "icon-bar"></span>
+              <span class = "icon-bar"></span>
+              <span class = "icon-bar"></span>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-nav-word">
+              <li ng-class="{active: isActive('/uebersicht')}" ><a ng-href="#/uebersicht">Übersicht</a></li>
+              <li ng-class="{active: isActive('/zufallswort')}"><a ng-click="randomWord()" ng-href="#/zufallswort">Zufallswort</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
+        <ng-view></ng-view>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 footer">
+        <p>Verwendete Technologien</p>
+        <ul>
+          <li>HTML5 Grundgerüst <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a></li>
+          <li>JavaScript Framework <a href="https://angularjs.org/">AngularJS</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </body>
+</html>

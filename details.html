@@ -1,0 +1,14 @@
+<div class="jumbotron">
+  <div class="text-center">
+    <h1>{{words[selWord].wordname}}</h1>
+    <p>{{words[selWord].voting}} Stimmen (Rang: {{selWord+1}})</p>
+    <button ng-click="increaseVoting(selWord); save(); showMsg=1" type="button" class="btn btn-default btn-lg btn-thumbs-up">
+      <span class="glyphicon glyphicon-thumbs-up"></span>
+    </button>
+    <button ng-click="decreaseVoting(selWord); save(); showMsg=2" type="button" class="btn btn-default btn-lg btn-thumbs-down">
+      <span class="glyphicon glyphicon-thumbs-down"></span>
+    </button>
+    <p class="p-show p-show-yo animate-appear" ng-show="showMsg==1">Hervorragende Wahl :) !</p>
+    <p class="p-show p-show-no animate-appear" ng-show="showMsg==2">Gefällt dir nicht :O ?</p>
+  <div>
+</div>

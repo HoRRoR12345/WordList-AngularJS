@@ -1,0 +1,62 @@
+  <h1 class="h1-word">Irrwitzige Wortschöpfungen</h1>
+  <div class="row">
+    <div class="form-inline col-xs-12 col-sm-5 col-md-5">
+      <ul class="nav nav-pills nav-pills-word">
+        <!-- <li><a ng-click="sortBy('voting', true)">Beste</a></li> -->
+        <li ng-class="{active: isSorted('-voting')}"><a ng-click="sortBy('-voting')">Beste</a></li>
+        <li ng-class="{active: isSorted('-date')}"><a ng-click="sortBy('-date')">Neueste</a></li>
+        <li ng-class="{active: isSorted('word')}"><a ng-click="sortBy('word')">Alle</a></li>
+      </ul>
+    </div>
+    <div class="col-xs-12 col-sm-7 col-md-7 form-input-word">
+      <div class="text-right-word">
+        <form ng-submit="addWord()">
+          <input ng-model="word" type="text" class="form-control form-control-word" placeholder="Neue geistige Errungenschaft">
+          <input type="submit" class="btn btn-success" value="Eintragen">
+        </form>
+      </div>
+    </div>
+  </div>
+  <div>
+    <table class="table table-striped table-words">
+      <thead>
+        <tr>
+          <th>Rang</th>
+          <th>Beitrag</th>
+          <th>Stimmen</th>
+          <th>Yo or No?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="word in words | filter:word:strict | orderBy: [sortType, $index] | pagination: curPage * pageSize | limitTo: pageSize track by $index">
+          <td>{{ words.indexOf(word) + 1 }}</td>
+          <td><a href="#/uebersicht/{{word.id}}" ng-bind="word.wordname"></a></td>
+          <td ng-bind="word.voting"></td>
+          <td>
+            <button ng-click="increaseVoting(words.indexOf(word)); saveOrdered()" type="button" class="btn btn-default btn-sm btn-thumbs-up">
+              <span class="glyphicon glyphicon-thumbs-up"></span>
+            </button>
+            <button ng-click="decreaseVoting(words.indexOf(word)); saveOrdered()" type="button" class="btn btn-default btn-sm btn-thumbs-down">
+              <span class="glyphicon glyphicon-thumbs-down"></span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-center" ng-show="(words.length-pageSize)>0">
+      <ul class="pagination pagination-word">
+        <li>
+          <button type="button" class="btn btn-success btn-success-left" ng-disabled="curPage == 0"
+           ng-click="curPage=curPage-1">PREV</button>
+        </li>
+        <li>
+          <span>Seite {{curPage + 1}} von {{ numberOfPages() }}</span>
+        </li>
+        <li>
+          <button type="button" class="btn btn-success btn-success-right"
+          ng-disabled="curPage >= words.length/pageSize - 1"
+          ng-click="curPage = curPage+1">NEXT</button>
+       </li>
+      </ul>
+    </div>
+  </div>
