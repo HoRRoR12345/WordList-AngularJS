@@ -3,16 +3,13 @@ var app = angular.module("wordList", ['ngRoute', 'ngAnimate']);
 app.config(function($routeProvider) {
   $routeProvider
     .when('/uebersicht', {
-      templateUrl: 'uebersicht.html',
-      controller: 'myCtrl'
+      templateUrl: 'uebersicht.html'
     })
     .when('/uebersicht/:param', {
-      templateUrl: 'details.html',
-      controller: 'myCtrl'
+      templateUrl: 'details.html'
     })
     .when('/zufallswort', {
-      templateUrl: 'zufallswort.html',
-      controller: 'myCtrl'
+      templateUrl: 'zufallswort.html'
     })
     .otherwise({
       redirectTo: '/uebersicht'
@@ -36,11 +33,23 @@ app.controller("myCtrl", function($scope, $location, $routeParams, $filter) {
   $scope.words = wordsOrdered;
 
   $scope.id = (localStorage.getItem('id')!==null) ? localStorage.getItem('id') : 0;
+ 
 
-  var selWord = $routeParams.param;
-  $scope.selWord = parseInt(selWord, 10);
-  $scope.selWord = $scope.words.indexOf($filter('filter')($scope.words, {id: $scope.selWord}, true)[0]);
+ // WAHHHHHHH
 
+
+ // 
+  // console.log($routeParams);
+  // var selWord = $routeParams.param;
+  // $scope.selWord = parseInt(selWord, 10);
+  // $scope.selWord = $scope.words.indexOf($filter('filter')($scope.words, {id: $scope.selWord}, true)[0]);
+
+  $scope.$on('$routeChangeSuccess', function() {
+    console.log($routeParams);
+    var selWord = $routeParams.param;
+    $scope.selWord = parseInt(selWord, 10);
+    $scope.selWord = $scope.words.indexOf($filter('filter')($scope.words, {id: $scope.selWord}, true)[0]);
+  }); 
 
   $scope.numberOfPages = function() {
     return Math.ceil($scope.words.length / $scope.pageSize);
