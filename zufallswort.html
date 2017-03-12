@@ -1,16 +1,16 @@
 <div class="jumbotron" ng-init="randomWord()">
   <div class="text-center">
-    <h1>{{words[random].name}}</h1>
-    <p>{{words[random].voting}} Stimmen (Rang: {{random+1}})</p>
-    <button ng-click="increaseVoting(random); save(); showMsg=1" type="button" class="btn btn-default btn-lg btn-thumbs-up">
+    <h1>{{words[index_randomWord].name}}</h1>
+    <p>{{words[index_randomWord].voting}} Stimmen (Rang: {{index_randomWord+1}})</p>
+    <button ng-click="increaseVoting(index_randomWord); saveWord(); findRndWordIndex(); showMsg=1" type="button" class="btn btn-default btn-lg btn-thumbs-up">
       <span class="glyphicon glyphicon-thumbs-up"></span>
     </button>
-    <button ng-click="decreaseVoting(random); save(); showMsg=2" type="button" class="btn btn-default btn-lg btn-thumbs-down">
+    <button ng-click="decreaseVoting(index_randomWord); saveWord(); findRndWordIndex(); showVoteMsg=2" type="button" class="btn btn-default btn-lg btn-thumbs-down">
       <span class="glyphicon glyphicon-thumbs-down"></span>
     </button>
-    <p class="p-show p-show-yo animate-appear" ng-show="showMsg==1">Hervorragende Wahl :) !</p>
-    <p class="p-show p-show-no animate-appear" ng-show="showMsg==2">Gefällt dir nicht :O ?</p>
+    <p class="p-show p-show-yo animate-appear" ng-show="showVoteMsg==1">Hervorragende Wahl :) !</p>
+    <p class="p-show p-show-no animate-appear" ng-show="showVoteMsg==2">Gefällt dir nicht :O ?</p>
     <p class="p-wordRandom">Langweilig?</p>
-    <button type="button" class="btn btn-success btn-success-random" ng-click="randomWord(); showMsg=0">Next One</button>
+    <button type="button" class="btn btn-success btn-success-random" ng-click="randomWord(); showVoteMsg=0">Next One</button>
   </div>
 </div>

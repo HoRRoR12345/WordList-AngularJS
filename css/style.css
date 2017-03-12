@@ -90,7 +90,11 @@ a {
 }
 
 .btn-success-random:focus,
-.btn-success-random:active:focus {
+.btn-success-random:active:focus,
+.btn-success-left:focus,
+.btn-success-left:active:focus,
+.btn-success-right:focus,
+.btn-success-right:active:focus {
   outline: 0;
 }
 
