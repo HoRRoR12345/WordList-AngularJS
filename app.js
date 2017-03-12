@@ -64,14 +64,14 @@ app.controller("myCtrl", function($scope, $location, $routeParams, $filter) {
   };
 
   $scope.addWord  = function (){
-    if(!$scope.word.wordname){
+    if(!$scope.word.name){
       return;
     }
     else {
 
       var timestamp = new Date();
-      $scope.words.push({id:$scope.id++, wordname:$scope.word.wordname, voting:0, date:timestamp});
-      $scope.word.wordname = "";
+      $scope.words.push({id:$scope.id++, name:$scope.word.name, voting:0, date:timestamp});
+      $scope.word.name = "";
     }
     $scope.saveOrdered();
   };

@@ -4,13 +4,13 @@
       <ul class="nav nav-pills nav-pills-word">
         <li ng-class="{active: isSorted('-voting')}"><a ng-click="sortBy('-voting')">Beste</a></li>
         <li ng-class="{active: isSorted('-date')}"><a ng-click="sortBy('-date')">Neueste</a></li>
-        <li ng-class="{active: isSorted('wordname')}"><a ng-click="sortBy('wordname')">Alle</a></li>
+        <li ng-class="{active: isSorted('name')}"><a ng-click="sortBy('name')">Alle</a></li>
       </ul>
     </div>
     <div class="col-xs-12 col-sm-7 col-md-7 form-input-word">
       <div class="text-right-word">
         <form ng-submit="addWord()">
-          <input ng-model="word.wordname" type="text" class="form-control form-control-word" placeholder="Neue geistige Errungenschaft">
+          <input ng-model="word.name" type="text" class="form-control form-control-word" placeholder="Neue geistige Errungenschaft">
           <input type="submit" class="btn btn-success" value="Eintragen">
         </form>
       </div>
@@ -29,7 +29,7 @@
       <tbody>
         <tr class="animate" ng-repeat="word in words | filter:word:strict | orderBy: [sortType, $index] | pagination: curPage * pageSize | limitTo: pageSize track by $index">
           <td>{{ words.indexOf(word) + 1 }}</td>
-          <td><a href="#/uebersicht/{{word.id}}" ng-bind="word.wordname"></a></td>
+          <td><a href="#/uebersicht/{{word.id}}" ng-bind="word.name"></a></td>
           <td ng-bind="word.voting"></td>
           <td>
             <button ng-click="increaseVoting(words.indexOf(word)); saveOrdered()" type="button" class="btn btn-default btn-sm btn-thumbs-up">
