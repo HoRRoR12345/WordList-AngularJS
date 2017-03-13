@@ -3,13 +3,13 @@ var app = angular.module("wordList", ['ngRoute', 'ngAnimate']);
 app.config(function($routeProvider) {
   $routeProvider
     .when('/uebersicht', {
-      templateUrl: 'uebersicht.html'
+      templateUrl: 'views/uebersicht.html'
     })
     .when('/uebersicht/:id', {
-      templateUrl: 'details.html'
+      templateUrl: 'views/details.html'
     })
     .when('/zufallswort', {
-      templateUrl: 'zufallswort.html'
+      templateUrl: 'views/zufallswort.html'
     })
     .otherwise({
       redirectTo: '/uebersicht'
@@ -38,7 +38,7 @@ app.controller("myCtrl", function($scope, $location, $routeParams, $filter) {
     var id_selectedWord = $routeParams.id;
     $scope.id_selectedWord = parseInt(id_selectedWord, 10);
     $scope.index_selectedWord = $scope.words.indexOf($filter('filter')($scope.words, {id: $scope.id_selectedWord}, true)[0]);
-  }); 
+  });
 
   $scope.numberOfPages = function() {
     return Math.ceil($scope.words.length / $scope.pageSize);
@@ -82,7 +82,6 @@ app.controller("myCtrl", function($scope, $location, $routeParams, $filter) {
 
   $scope.sortBy = function(sortType) {
     $scope.sortType = sortType;
-    $scope.curPage = 0;
   };
 
   $scope.findSelWordIndex = function() {
@@ -100,6 +99,7 @@ app.controller("myCtrl", function($scope, $location, $routeParams, $filter) {
     $scope.findRndWordIndex();
   };
 });
+
 
 app.filter('pagination', function() {
   return function(input, start) {

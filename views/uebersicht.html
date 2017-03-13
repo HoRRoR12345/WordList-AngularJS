@@ -2,9 +2,9 @@
   <div class="row">
     <div class="form-inline col-xs-12 col-sm-5 col-md-5">
       <ul class="nav nav-pills nav-pills-word">
-        <li ng-class="{active: isSorted('-voting')}"><a ng-click="sortBy('-voting')">Beste</a></li>
-        <li ng-class="{active: isSorted('-date')}"><a ng-click="sortBy('-date')">Neueste</a></li>
-        <li ng-class="{active: isSorted('name')}"><a ng-click="sortBy('name')">Alle</a></li>
+        <li ng-class="{active: isSorted('-voting')}"><a ng-click="sortBy('-voting'); curPage=0;">Beste</a></li>
+        <li ng-class="{active: isSorted('-date')}"><a ng-click="sortBy('-date'); curPage=0;">Neueste</a>; curPage=0;</li>
+        <li ng-class="{active: isSorted('name')}"><a ng-click="sortBy('name'); curPage=0;">Alle</a></li>
       </ul>
     </div>
     <div class="col-xs-12 col-sm-7 col-md-7 form-input-word">

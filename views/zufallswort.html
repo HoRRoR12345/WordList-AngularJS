@@ -2,7 +2,7 @@
   <div class="text-center">
     <h1>{{words[index_randomWord].name}}</h1>
     <p>{{words[index_randomWord].voting}} Stimmen (Rang: {{index_randomWord+1}})</p>
-    <button ng-click="increaseVoting(index_randomWord); saveWord(); findRndWordIndex(); showMsg=1" type="button" class="btn btn-default btn-lg btn-thumbs-up">
+    <button ng-click="increaseVoting(index_randomWord); saveWord(); findRndWordIndex(); showVoteMsg=1" type="button" class="btn btn-default btn-lg btn-thumbs-up">
       <span class="glyphicon glyphicon-thumbs-up"></span>
     </button>
     <button ng-click="decreaseVoting(index_randomWord); saveWord(); findRndWordIndex(); showVoteMsg=2" type="button" class="btn btn-default btn-lg btn-thumbs-down">
